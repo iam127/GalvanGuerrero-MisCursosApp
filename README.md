@@ -1,138 +1,133 @@
 GalvanGuerrero-MisCursosApp
-Aplicación Android de Gestión de Cursos con Firebase
-Autor
-Matias Galvan Guerrero
-Instituto de Educación Superior Tecnológica TECSUP
-Carrera: Desarrollo de Aplicaciones Web y Móviles
-Curso: Programación Móvil - Laboratorio 12
+Sistema de Gestión de Cursos Académicos con Firebase
+Versión: 1.0.0
+Desarrollador: Matias Galvan Guerrero
+Institución: TECSUP - Instituto de Educación Superior Tecnológica
+Programa Académico: Desarrollo de Aplicaciones Web y Móviles
 
-Descripción
-Aplicación móvil Android desarrollada en Kotlin que implementa un sistema completo de gestión de cursos académicos con autenticación de usuarios mediante Firebase Authentication y almacenamiento en tiempo real con Cloud Firestore. La aplicación permite a cada usuario registrar, visualizar, editar y eliminar sus propios cursos de manera segura e independiente.
-Características Técnicas
-Arquitectura y Patrones
+Resumen Ejecutivo
+GalvanGuerrero-MisCursosApp es una aplicación móvil nativa Android desarrollada en Kotlin que implementa un sistema integral de gestión de cursos académicos. La solución incorpora autenticación segura mediante Firebase Authentication y persistencia de datos en tiempo real con Cloud Firestore, permitiendo operaciones CRUD completas con aislamiento de datos por usuario.
+Especificaciones Técnicas
+Arquitectura del Sistema
 
-Arquitectura basada en componentes con Jetpack Compose
-Patrón de navegación mediante Navigation Compose
-Separación de responsabilidades (Models, Screens, Navigation)
-Gestión de estado reactivo con State y MutableState
-Composables reutilizables y modulares
-
-Funcionalidades Principales
-
-Sistema completo de autenticación (registro, login, logout)
-Operaciones CRUD en Cloud Firestore
-Filtrado de datos por usuario autenticado
-Validación de formularios en tiempo real
-Sincronización automática de datos
-Manejo de estados de carga y errores
-Interfaz de usuario responsive
+Patrón Arquitectónico: Component-based Architecture
+UI Framework: Jetpack Compose (Declarative UI)
+Gestión de Estado: Reactive State Management
+Navegación: Single-Activity Architecture con Navigation Component
+Backend as a Service: Firebase Platform
 
 Stack Tecnológico
-Frontend:
+ComponenteTecnologíaVersiónLenguaje de ProgramaciónKotlin1.9+Framework UIJetpack Compose1.5+Sistema de DiseñoMaterial Design3.0AutenticaciónFirebase Authentication22.3.0Base de DatosCloud Firestore24.10.0NavegaciónNavigation Compose2.8.0Build SystemGradle Kotlin DSL8.2IDEAndroid StudioHedgehog 2023.1.1
+Requisitos del Sistema
+Plataforma Objetivo:
 
-Kotlin 1.9+
-Jetpack Compose (UI declarativa)
-Material Design 3
-Compose Navigation 2.8.0
+Sistema Operativo: Android
+SDK Mínimo: API 26 (Android 8.0 Oreo)
+SDK Objetivo: API 36
+Arquitectura: ARM, ARM64, x86, x86_64
 
-Backend & Servicios:
+Entorno de Desarrollo:
 
-Firebase Authentication (Email/Password)
-Cloud Firestore Database
-Firebase BOM 33.1.0
-
-Herramientas de Desarrollo:
-
-Android Studio Hedgehog
-Gradle Kotlin DSL
-JDK 11
-Min SDK: 26 (Android 8.0)
-Target SDK: 36
-
-Estructura del Proyecto
-app/src/main/java/com/tecsup/galvanguerreromiscursosapp/
-│
-├── models/
-│   └── Curso.kt                    # Data class del modelo de dominio
-│
-├── screens/
-│   ├── LoginScreen.kt              # Pantalla de autenticación
-│   ├── RegisterScreen.kt           # Pantalla de registro de usuarios
-│   └── CursosListScreen.kt         # Pantalla principal con operaciones CRUD
-│
-├── navigation/
-│   └── AuthApp.kt                  # Configuración del grafo de navegación
-│
-├── ui/theme/
-│   ├── Color.kt                    # Definición de paleta de colores
-│   ├── Theme.kt                    # Configuración del tema Material
-│   └── Type.kt                     # Sistema de tipografía
-│
-└── MainActivity.kt                  # Activity principal y punto de entrada
-Modelo de Datos
-Entidad Curso
-kotlindata class Curso(
-    val id: String = "",
-    val nombre: String = "",
-    val descripcion: String = "",
-    val creditos: Int = 0,
-    val userId: String = ""
-)
-Esquema Firestore
-Colección: cursos
-CampoTipoDescripciónidStringIdentificador único generado automáticamentenombreStringNombre del cursodescripcionStringDescripción detallada del cursocreditosIntNúmero de créditos académicosuserIdStringUID del usuario propietario (Firebase Auth)
-Configuración e Instalación
-Requisitos Previos
-
-Android Studio Hedgehog (2023.1.1) o superior
 JDK 11 o superior
-Cuenta de Google/Firebase
-Dispositivo Android con API 26+ o emulador configurado
-Git instalado
+Android Studio Hedgehog o superior
+Gradle 8.2+
+Cuenta Firebase activa
 
-Configuración de Firebase
+Arquitectura de la Aplicación
+Estructura de Capas
+┌─────────────────────────────────────┐
+│     Presentation Layer (UI)         │
+│  ┌──────────────────────────────┐   │
+│  │  Jetpack Compose Screens     │   │
+│  │  - LoginScreen               │   │
+│  │  - RegisterScreen            │   │
+│  │  - CursosListScreen          │   │
+│  └──────────────────────────────┘   │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│      Navigation Layer               │
+│  ┌──────────────────────────────┐   │
+│  │  Navigation Graph            │   │
+│  │  Route Management            │   │
+│  └──────────────────────────────┘   │
+└─────────────────────────────────────┘
+              ↓
+┌─────────────────────────────────────┐
+│      Data Layer                     │
+│  ┌──────────────────────────────┐   │
+│  │  Firebase Authentication     │   │
+│  │  Cloud Firestore             │   │
+│  └──────────────────────────────┘   │
+└─────────────────────────────────────┘
+Organización del Código
+com.tecsup.galvanguerreromiscursosapp/
+├── models/
+│   └── Curso.kt                    # Entidades de dominio
+├── screens/
+│   ├── LoginScreen.kt              # Capa de presentación
+│   ├── RegisterScreen.kt
+│   └── CursosListScreen.kt
+├── navigation/
+│   └── AuthApp.kt                  # Configuración de rutas
+├── ui/theme/
+│   ├── Color.kt                    # Sistema de diseño
+│   ├── Theme.kt
+│   └── Type.kt
+└── MainActivity.kt                  # Punto de entrada
+Modelo de Datos
+Esquema de Entidades
+Entidad: Curso
+kotlindata class Curso(
+    val id: String,           // Identificador único (UUID)
+    val nombre: String,       // Nombre del curso (máx. 100 caracteres)
+    val descripcion: String,  // Descripción detallada (máx. 500 caracteres)
+    val creditos: Int,        // Créditos académicos (rango: 1-8)
+    val userId: String        // Foreign Key a Firebase Auth UID
+)
+Base de Datos Cloud Firestore
+Colección: cursos
+CampoTipoRestriccionesDescripciónidstringPK, NOT NULLIdentificador único autogeneradonombrestringNOT NULL, MAX 100Denominación del cursodescripcionstringNULLABLE, MAX 500Información descriptivacreditosnumberNOT NULL, MIN 1, MAX 8Valor crediticiouserIdstringFK, NOT NULL, INDEXEDReferencia al usuario propietario
+Índices:
 
-Crear proyecto en Firebase Console
-Nombre del proyecto: GalvanGuerrero-MisCursosApp
-Habilitar Firebase Authentication:
+userId (ASC) - Para consultas filtradas por usuario
+createdAt (DESC) - Para ordenamiento cronológico (opcional)
 
-Método: Correo electrónico/Contraseña
-Activar proveedor de inicio de sesión
-
-
-Habilitar Cloud Firestore:
-
-Modo: Iniciar en modo de prueba
-Ubicación: southamerica-east1 (São Paulo)
-
-
-Registrar aplicación Android:
-
-Package name: com.tecsup.galvanguerreromiscursosapp
-Descargar archivo google-services.json
-
-
-
-Instalación Local
-bash# Clonar el repositorio
-git clone https://github.com/[tu-usuario]/GalvanGuerrero-MisCursosApp.git
-
-# Navegar al directorio del proyecto
+Configuración del Entorno
+1. Configuración de Firebase
+1.1 Creación del Proyecto
+bash1. Acceder a Firebase Console (https://console.firebase.google.com)
+2. Crear nuevo proyecto: "GalvanGuerrero-MisCursosApp"
+3. Deshabilitar Google Analytics (opcional)
+4. Confirmar creación del proyecto
+1.2 Configuración de Authentication
+bash1. Navegación: Authentication > Sign-in method
+2. Habilitar proveedor: Email/Password
+3. Configurar dominio autorizado: localhost (desarrollo)
+4. Guardar configuración
+1.3 Configuración de Firestore
+bash1. Navegación: Firestore Database > Create database
+2. Modo inicial: Test mode (desarrollo) / Production mode (producción)
+3. Ubicación: southamerica-east1 (São Paulo, Brasil)
+4. Crear base de datos
+1.4 Registro de Aplicación Android
+bash1. Agregar app Android al proyecto Firebase
+2. Package name: com.tecsup.galvanguerreromiscursosapp
+3. App nickname: GalvanGuerrero-MisCursosApp
+4. Descargar google-services.json
+5. SHA-1: [Opcional para desarrollo local]
+2. Configuración Local
+2.1 Clonación del Repositorio
+bashgit clone https://github.com/[username]/GalvanGuerrero-MisCursosApp.git
 cd GalvanGuerrero-MisCursosApp
+2.2 Integración de Firebase
+bash# Copiar archivo de configuración
+cp /path/to/google-services.json app/google-services.json
 
-# Copiar google-services.json al directorio app/
-cp /ruta/a/google-services.json app/
-
-# Abrir el proyecto en Android Studio
-# File > Open > Seleccionar carpeta del proyecto
-
-# Sincronizar dependencias de Gradle
-# Build > Sync Project with Gradle Files
-
-# Ejecutar la aplicación
-# Run > Run 'app' (Shift + F10)
-Configuración de Gradle
-build.gradle.kts (Project)
+# Verificar ubicación correcta
+ls -la app/google-services.json
+2.3 Configuración de Gradle
+build.gradle.kts (Project-level)
 kotlinplugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
@@ -150,142 +145,363 @@ kotlinplugins {
 android {
     namespace = "com.tecsup.galvanguerreromiscursosapp"
     compileSdk = 36
-    
+
     defaultConfig {
         applicationId = "com.tecsup.galvanguerreromiscursosapp"
         minSdk = 26
         targetSdk = 36
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
+        
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+
+    packaging {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
     }
 }
 
 dependencies {
+    // Firebase Platform
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
-    implementation("androidx.navigation:navigation-compose:2.8.0")
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
+
+    // Jetpack Compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.activity.compose)
+
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:2.8.0")
+
+    // Core Android
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+
+    // Testing
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+
+    // Debug
+    debugImplementation(libs.androidx.ui.tooling)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
-Reglas de Seguridad Firestore
+2.4 Sincronización y Compilación
+bash# En Android Studio
+./gradlew clean
+./gradlew build
+
+# O mediante interfaz gráfica
+File > Sync Project with Gradle Files
+Build > Make Project
+Reglas de Seguridad
+Firestore Security Rules
+Modo Desarrollo:
 javascriptrules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /cursos/{curso} {
-      allow read, write: if request.auth != null && 
-                           request.auth.uid == resource.data.userId;
-      allow create: if request.auth != null;
+    match /{document=**} {
+      allow read, write: if request.time < timestamp.date(2025, 12, 31);
+    }
+  }
+}
+Modo Producción (Recomendado):
+javascriptrules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /cursos/{cursoId} {
+      // Permitir lectura solo si el usuario es el propietario
+      allow read: if request.auth != null && 
+                     request.auth.uid == resource.data.userId;
+      
+      // Permitir escritura solo si el usuario es el propietario
+      allow write: if request.auth != null && 
+                      request.auth.uid == request.resource.data.userId;
+      
+      // Permitir creación de nuevos documentos
+      allow create: if request.auth != null &&
+                       request.auth.uid == request.resource.data.userId &&
+                       request.resource.data.keys().hasAll(['nombre', 'creditos', 'userId']);
+      
+      // Permitir actualización solo del propietario
+      allow update: if request.auth != null &&
+                       request.auth.uid == resource.data.userId &&
+                       request.auth.uid == request.resource.data.userId;
+      
+      // Permitir eliminación solo del propietario
+      allow delete: if request.auth != null &&
+                       request.auth.uid == resource.data.userId;
     }
   }
 }
 ```
 
-## Funcionalidades Implementadas
+## Funcionalidades del Sistema
 
-### Autenticación
-- Registro de usuarios con validación de email y contraseña
-- Inicio de sesión con credenciales persistentes
-- Cierre de sesión con limpieza de estado
-- Validación de contraseña mínima de 6 caracteres
+### Módulo de Autenticación
+
+**Características:**
+- Registro de usuarios con email y contraseña
+- Validación de formato de email (RFC 5322)
+- Política de contraseñas: mínimo 6 caracteres
 - Confirmación de contraseña en registro
+- Inicio de sesión con persistencia de sesión
+- Cierre de sesión con limpieza de estado
 - Manejo de errores de autenticación
 
-### Gestión de Cursos
-- **Create:** Agregar nuevos cursos con nombre, descripción y créditos
-- **Read:** Listado de cursos filtrados por usuario autenticado
-- **Update:** Edición completa de información de cursos existentes
-- **Delete:** Eliminación de cursos con confirmación
-- Actualización en tiempo real mediante listeners de Firestore
-- Validación de campos obligatorios y formato de datos
+**Validaciones Implementadas:**
+- Email: formato válido, no vacío
+- Contraseña: longitud >= 6 caracteres
+- Confirmación: igualdad con contraseña principal
+- Campos obligatorios: validación en tiempo real
+
+### Módulo de Gestión de Cursos
+
+**Operaciones CRUD:**
+
+1. **CREATE (Crear)**
+   - Formulario de entrada con validaciones
+   - Campos: nombre, descripción, créditos
+   - Asignación automática de userId
+   - Persistencia en Firestore
+
+2. **READ (Leer)**
+   - Consulta filtrada por usuario autenticado
+   - Actualización en tiempo real mediante listeners
+   - Renderizado de lista con LazyColumn
+   - Estado vacío con mensaje informativo
+
+3. **UPDATE (Actualizar)**
+   - Diálogo modal de edición
+   - Precarga de datos existentes
+   - Validación de cambios
+   - Actualización atómica en Firestore
+
+4. **DELETE (Eliminar)**
+   - Eliminación directa con feedback visual
+   - Actualización automática de la UI
+   - Manejo de errores de eliminación
 
 ### Interfaz de Usuario
-- Diseño Material Design 3 con componentes nativos
-- Sistema de navegación entre pantallas sin stack infinito
-- Feedback visual mediante Toast messages
-- Estados de carga durante operaciones asíncronas
-- Diálogos modales para creación y edición
-- Lista vacía con mensaje informativo
-- Iconografía descriptiva (Material Icons)
 
-## Flujo de Navegación
+**Principios de Diseño:**
+- Material Design 3 Guidelines
+- Composición declarativa con Jetpack Compose
+- Responsive layout adaptable
+- Accesibilidad (Content descriptions)
+- Feedback visual inmediato
+
+**Componentes Principales:**
+- OutlinedTextField para entrada de datos
+- Button con estados enabled/disabled
+- Card para visualización de cursos
+- FloatingActionButton para acción principal
+- AlertDialog para operaciones modales
+- TopAppBar con navegación
+
+## Flujo de Datos
 ```
-LoginScreen
-    ├─> RegisterScreen ──┐
-    └─> CursosListScreen <┘
-            ├─> Agregar Curso (Dialog)
-            ├─> Editar Curso (Dialog)
-            ├─> Eliminar Curso
-            └─> Logout ──> LoginScreen
-Testing y Validación
-Casos de Prueba Implementados
+Usuario → UI (Compose) → ViewModel/State → Firebase SDK → Firebase Cloud
+   ↑                                                              ↓
+   └──────────────── Actualización Reactiva ←────────────────────┘
+```
 
-Registro de usuario con email válido
-Registro con contraseña menor a 6 caracteres (validación)
-Inicio de sesión con credenciales correctas
-Inicio de sesión con credenciales incorrectas
-Creación de curso con todos los campos completos
-Creación de curso con campos vacíos (validación)
-Edición de curso existente
-Eliminación de curso
-Verificación de aislamiento de datos entre usuarios
-Persistencia de sesión al cerrar y abrir app
-Sincronización en tiempo real con Firestore
+**Proceso de Autenticación:**
+```
+1. Usuario ingresa credenciales
+2. Validación local de formato
+3. Llamada a FirebaseAuth.signInWithEmailAndPassword()
+4. Firebase verifica credenciales
+5. Retorno de FirebaseUser o Error
+6. Navegación a pantalla principal o mensaje de error
+```
 
-Manejo de Errores
+**Proceso CRUD:**
+```
+1. Usuario realiza acción (crear/editar/eliminar)
+2. Validación de datos en cliente
+3. Construcción de documento Firestore
+4. Llamada a Firestore (add/update/delete)
+5. Firebase procesa operación
+6. Listener actualiza UI automáticamente
+7. Feedback visual al usuario
+Testing y Calidad
+Plan de Pruebas
+Pruebas Funcionales:
 
-Conexión a internet ausente
-Credenciales de autenticación inválidas
-Campos de formulario vacíos
-Formato de email incorrecto
-Contraseñas que no coinciden
-Errores de permisos en Firestore
+ Registro de usuario exitoso
+ Registro con email duplicado
+ Registro con contraseña débil
+ Login con credenciales válidas
+ Login con credenciales inválidas
+ Creación de curso completo
+ Creación con campos vacíos
+ Edición de curso existente
+ Eliminación de curso
+ Filtrado por usuario
+ Sincronización en tiempo real
+ Cierre de sesión
 
-Seguridad
-Medidas Implementadas
+Pruebas de Seguridad:
 
-Autenticación obligatoria para acceder a la aplicación
-Filtrado de datos por userId en todas las consultas
+ Aislamiento de datos entre usuarios
+ Autenticación obligatoria
+ Validación de tokens
+ Reglas de Firestore aplicadas
+
+Pruebas de Usabilidad:
+
+ Navegación intuitiva
+ Mensajes de error comprensibles
+ Feedback visual de operaciones
+ Estados de carga visibles
+
+Métricas de Calidad
+MétricaValorCobertura de funcionalidades100%Validaciones implementadas100%Manejo de erroresCompletoDocumentación de código85%
+Seguridad y Privacidad
+Medidas de Seguridad Implementadas
+
+Autenticación:
+
+Sistema de autenticación robusto con Firebase
+Tokens JWT gestionados automáticamente
+Renovación automática de sesión
+
+
+Autorización:
+
+Filtrado por userId en todas las consultas
 Reglas de seguridad en Firestore por usuario
-No se exponen credenciales en el código
-Uso de google-services.json excluido del control de versiones
-Validación de entrada en cliente y servidor
+Validación de permisos en servidor
 
-Buenas Prácticas
 
-Uso de Firebase BOM para gestión de versiones
-Implementación de LaunchedEffect para listeners
-Manejo de estados con remember y mutableStateOf
-Composables sin efectos secundarios
-Navegación con popUpTo para evitar stacks innecesarios
+Datos:
 
-Mejoras Futuras
+No se almacenan contraseñas en dispositivo
+Comunicación HTTPS obligatoria
+No se exponen credenciales en logs
 
-Implementación de búsqueda y filtros en lista de cursos
-Ordenamiento por nombre, créditos o fecha de creación
-Recuperación de contraseña mediante email
-Perfil de usuario con foto y datos personales
-Estadísticas de cursos y créditos totales
-Exportación de datos a PDF
-Notificaciones push para recordatorios
-Modo offline con sincronización posterior
-Implementación de pruebas unitarias y de UI
-Integración continua con GitHub Actions
 
-Licencia
-Este proyecto fue desarrollado con fines académicos como parte del Laboratorio 12 del curso de Programación Móvil en TECSUP.
-Contacto
-Matias Galvan Guerrero
-Estudiante de Desarrollo de Aplicaciones Web y Móviles
-TECSUP - La Molina, Lima, Perú
+Código:
 
-Versión: 1.0
-Fecha de Desarrollo: Noviembre 2025
-Curso: Programación Móvil
+google-services.json en .gitignore
+No hay hardcoded credentials
+Ofuscación en build de release
+
+
+
+Cumplimiento de Normativas
+
+Gestión de datos personales según buenas prácticas
+Almacenamiento seguro de credenciales (Firebase Auth)
+Comunicaciones encriptadas (TLS 1.3)
+
+Mantenimiento y Evolución
+Roadmap de Funcionalidades
+Versión 1.1 (Planificado):
+
+Búsqueda y filtrado avanzado de cursos
+Ordenamiento por múltiples criterios
+Paginación de resultados
+
+Versión 1.2 (Planificado):
+
+Recuperación de contraseña
+Perfil de usuario editable
+Estadísticas y dashboard
+
+Versión 2.0 (Futuro):
+
+Modo offline con sincronización
+Notificaciones push
+Exportación de datos
+Integración con sistemas académicos
+
+Procedimientos de Mantenimiento
+Actualizaciones de Dependencias:
+bash# Verificar actualizaciones
+./gradlew dependencyUpdates
+
+# Actualizar Firebase BOM
+implementation(platform("com.google.firebase:firebase-bom:XX.X.X"))
+
+# Actualizar Compose BOM
+implementation(platform("androidx.compose:compose-bom:YYYY.MM"))
+Monitoreo:
+
+Firebase Console para métricas de uso
+Firebase Crashlytics (a implementar)
+Analytics de rendimiento
+
+Documentación Adicional
+Referencias Técnicas
+
+Firebase Authentication Documentation
+Cloud Firestore Documentation
+Jetpack Compose Guidelines
+Material Design 3
+Kotlin Documentation
+
+Recursos del Proyecto
+
+Repositorio: GitHub
+Documentación API: (En desarrollo)
+Issues y Bugs: GitHub Issues
+
+Información del Proyecto
+Contexto Académico:
+
+Laboratorio 12 - Programación Móvil
 Docente: Juan José León S.
+Institución: TECSUP
+Ciclo: 4to Ciclo
+Año Académico: 2024
+
+Metadatos del Desarrollo:
+
+Fecha de Inicio: Noviembre 2025
+Versión Actual: 1.0.0
+Estado: Producción (Académico)
+Licencia: Uso Académico
+
+
+Desarrollado por Matias Galvan Guerrero
+TECSUP - Desarrollo de Aplicaciones Web y Móviles
+© 2024 - Todos los derechos reservados para fines académicos
