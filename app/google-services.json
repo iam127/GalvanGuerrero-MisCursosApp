@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170683210010",
+    "project_id": "galvanguerrero-miscursos-8ad43",
+    "storage_bucket": "galvanguerrero-miscursos-8ad43.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170683210010:android:511875b0c61bad06aef4a3",
+        "android_client_info": {
+          "package_name": "com.tecsup.galvanguerreromiscursosapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCugnEu56FbkiZivno1hjch7fNrTRh0CY0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
